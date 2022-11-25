@@ -1,21 +1,30 @@
+import academy.certif.taskcheck.service.CheckService;
+import academy.certif.taskcheck.service.EntityCheckableProviderMock;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 public class CheckServiceTest {
     
-    private CheckService checkService;
+    private static CheckService checkService;
 
-    private EntityCheckableProviderMock entityCheckableProviderMock;
+    private static EntityCheckableProviderMock entityCheckableProviderMock;
 
-    @PostConstruct
-    public load() {
-        this.entityCheckableProviderMock = new EntityCheckableProviderMock();
-        this.checkService = new CheckService(entityCheckableProviderMock);
-    }
+    // @BeforeClass
+    // public static void init() {
+    //     CheckServiceTest.entityCheckableProviderMock = new EntityCheckableProviderMock();
+    //     CheckServiceTest.checkService = new CheckService(entityCheckableProviderMock);
+    // }
 
-    @Test
-    public void check() {
+    // @Test
+    // public void check() {
 
-        var listNotDone = checkService.listNotDone();
+    //     var listNotDone = CheckServiceTest.checkService.listNotDone();
 
-        assertNotNull(listNotDone);
-        assertEquals(listNotDone.get(0).getDescription(), "test")
-    }
+    //     assertNotNull(listNotDone);
+    //     assertEquals(listNotDone.get(0).getDescription(), "test");
+    // }
 }
