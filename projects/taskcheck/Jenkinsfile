@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM 'H/5 * * * *'
+      }
+
+    stages{
+        stage ("git"){
+            steps {
+                git branch: 'main', credentialsId: 'fa63aacd-fd80-4cb6-ba26-33c8818a9521', url: 'https://github.com/hugo95470/epsi-dev709-ci'
+            }
+        }
+        stage ("clean"){
+            steps {
+                dir ('projects/taskcheck'){
+                    bat 'mvnw clean'
+                }
+            }
+        }
+        stage ("compile"){
+            steps {
+                dir ('projects/taskcheck'){
+                    bat 'mvnw compile'
+                   }
+            }
+        }
+        stage ("test"){
+            steps {
+                dir ('projects/taskcheck'){
+                    bat 'mvnw test '
+                    }
+            }
+        }
+        stage ("package"){
+            steps {
+                dir ('projects/taskcheck'){
+                    bat 'mvnw package'
+                    }
+            }
+        }
+        stage ("rename"){
+            steps {
+                dir ('projects/taskcheck'){
+                     bat 'rename target\\taskcheck-0.0.1-SNAPSHOT.jar taskcheck-%BUILD_NUMBER%.jar'
+                    }
+            }
+        }
+        stage ("archive"){
+            steps {
+                dir ('projects/taskcheck'){
+                    archiveArtifacts artifacts: 'target\\taskcheck-*.jar', followSymlinks: false
+                }
+            }
+        }
+    }
+}
+    
