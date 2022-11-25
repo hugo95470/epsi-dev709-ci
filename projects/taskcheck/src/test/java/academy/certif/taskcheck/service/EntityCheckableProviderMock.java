@@ -10,10 +10,7 @@ public class EntityCheckableProviderMock extends EntityCheckableProvider {
     
     @Override
     public Iterable<EntityCheckable> searchDone(boolean isDone) {
-	
-        List<Task> list = new ArrayList<Task>();
-        list.add(new Task(1, "a string"));
 
-		return list;
+		return null;
 	}
 }
