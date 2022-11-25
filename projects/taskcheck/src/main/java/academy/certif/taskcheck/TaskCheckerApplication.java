@@ -5,6 +5,7 @@ import java.util.Scanner;
 import academy.certif.taskcheck.controller.CheckController;
 import academy.certif.taskcheck.provider.EntityCheckableProvider;
 import academy.certif.taskcheck.provider.TaskProvider;
+import academy.certif.taskcheck.service.CheckServiceImpl;
 import academy.certif.taskcheck.service.CheckService;
 
 public class TaskCheckerApplication {
@@ -12,7 +13,7 @@ public class TaskCheckerApplication {
 	public static void main(String[] args) {
 		
 		EntityCheckableProvider provider = new TaskProvider();
-		CheckService service = new CheckService(provider);
+		CheckService service = new CheckServiceImpl(provider);
 		CheckController controller = new CheckController(service);
 
 		while(true) {

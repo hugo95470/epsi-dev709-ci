@@ -1,3 +1,4 @@
+import academy.certif.taskcheck.service.CheckServiceImpl;
 import academy.certif.taskcheck.service.CheckService;
 import academy.certif.taskcheck.service.EntityCheckableProviderMock;
 
@@ -21,7 +22,7 @@ public class CheckServiceTest {
     @BeforeClass
     public static void init() {
         CheckServiceTest.entityCheckableProviderMock = new EntityCheckableProviderMock();
-        CheckServiceTest.checkService = new CheckService(entityCheckableProviderMock);
+        CheckServiceTest.checkService = new CheckServiceImpl(entityCheckableProviderMock);
     }
 
     @Test
